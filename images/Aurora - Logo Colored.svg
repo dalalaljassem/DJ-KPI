@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="310px" viewBox="0 0 256 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Aurora - Logo Colored</title>
+    <defs>
+        <polygon id="path-1" points="1.42108547e-14 0 128 0 128 181.0183 1.42108547e-14 181.0183"></polygon>
+    </defs>
+    <g id="Aurora---Logo-Colored" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Aurora-Logo---Colored">
+            <rect id="Background" x="0" y="0" width="256" height="310"></rect>
+            <g id="Splitted-Shapes" transform="translate(0, 0.4905)">
+                <path d="M128,181.019 L37.49,271.529 C13.495,247.533 0,214.954 0,181.019 C0,147.085 13.495,114.505 37.49,90.51 L128,181.019 Z" id="Left-Quadrant" fill="#2B7E96"></path>
+                <g id="Top-Quadrant" transform="translate(37.4903, 0)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-4"></g>
+                    <path d="M1.42108547e-14,90.5093 L90.51,-0.0007 C114.505,23.9953 128,56.5743 128,90.5093 C128,124.4433 114.505,157.0233 90.51,181.0183 L1.42108547e-14,90.5093 Z" id="Fill-3" fill="#9ABFCB" mask="url(#mask-2)"></path>
+                </g>
+                <path d="M128,181.019 L37.49,271.529 C61.486,295.524 94.065,309.019 128,309.019 C161.934,309.019 194.514,295.524 218.509,271.529 L128,181.019 Z" id="Bottom-Quadrant" fill="#2B7E96"></path>
+                <path d="M128,181.019 L218.51,90.509 C242.505,114.505 256,147.084 256,181.019 C256,214.953 242.505,247.533 218.51,271.528 L128,181.019 Z" id="Right-Quadrant" fill="#1F5E72"></path>
+                <path d="M128,181.019 L218.51,271.528 L218.071,271.13 C186.591,242.585 156.531,212.512 128,181.019 Z" id="Highlight" fill="#9ABFCB"></path>
+            </g>
+        </g>
+    </g>
+</svg>
