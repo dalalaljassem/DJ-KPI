@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Performance · H1 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      color: #1a1a18;
+    }
+
+    /* ══════════════════════════════════
+       ORBIT HERO
+    ══════════════════════════════════ */
+    .orbit-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .orbit-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(#e8e6df 1px, transparent 1px),
+        linear-gradient(90deg, #e8e6df 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.35;
+    }
+
+    .center-text {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      user-select: none;
+      padding: 0 20px;
+    }
+
+    .center-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b4b2a9;
+      margin-bottom: 0.6rem;
+    }
+
+    .center-title {
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -3px;
+      color: #1a1a18;
+    }
+
+    .center-title .g {
+      color: #639922;
+    }
+
+    .center-sub {
+      font-size: 13px;
+      color: #888780;
+      margin-top: 1rem;
+    }
+
+    .center-badge {
+      display: inline-block;
+      margin-top: 1.25rem;
+      background: #1a1a18;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .center-badge:hover {
+      background: #639922;
+    }
+
+    /* rings */
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed #d3d1c7;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .r1 {
+      width: 240px;
+      height: 240px;
+    }
+
+    .r2 {
+      width: 430px;
+      height: 430px;
+    }
+
+    .r3 {
+      width: 640px;
+      height: 640px;
+    }
+
+    .r4 {
+      width: 840px;
+      height: 840px;
+      border-color: #ebebeb;
+    }
+
+    /* chips */
+    .chip {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      z-index: 5;
+      transition: filter .25s ease;
+    }
+
+    .chip:hover {
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, .18));
+    }
+
+    .chip-box {
+      width: 76px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8px;
+      background: transparent;
+    }
+
+    .chip-box svg,
+    .chip-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .chip-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #888780;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* floating icons */
+    .ficon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 24px;
+      pointer-events: none;
+      z-index: 2;
+      animation: floatIcon var(--d, 3s) ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+
+      0%,
+      100% {
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) translateY(-10px) rotate(4deg);
+      }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: shpulse 2s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    @keyframes shpulse {
+
+      0%,
+      100% {
+        opacity: .4;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(6px);
+      }
+    }
+
+    .scroll-hint span {
+      font-size: 11px;
+      font-weight: 600;
+      color: #b4b2a9;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════
+       SHARED UTILITIES
+    ══════════════════════════════════ */
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .s-tag {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b4b2a9;
+      margin-bottom: 12px;
+    }
+
+    .s-h2 {
+      font-size: clamp(30px, 3.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: #1a1a18;
+      margin-bottom: 14px;
+    }
+
+    .s-p {
+      font-size: 16px;
+      color: #888780;
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    /* ══════════════════════════════════
+       STATS STRIP
+    ══════════════════════════════════ */
+    .stats-strip {
+      background: #1a1a18;
+      padding: 64px 40px;
+    }
+
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .st-num {
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 8px;
+    }
+
+    .st-num .unit {
+      font-size: .42em;
+      font-weight: 400;
+      color: #4a4a48;
+      letter-spacing: 0;
+    }
+
+    .st-lbl {
+      font-size: 13px;
+      color: #5f5e5a;
+      line-height: 1.4;
+    }
+
+    .st-sub {
+      font-size: 11px;
+      color: #3a3a38;
+      margin-top: 3px;
+    }
+
+    /* ══════════════════════════════════
+       CARDS MARQUEE
+    ══════════════════════════════════ */
+    .cards-section {
+      padding: 80px 0 60px;
+      background: #fff;
+    }
+
+    .cards-head {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 44px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cards-note {
+      font-size: 12px;
+      color: #c4c2b9;
+      text-align: right;
+      line-height: 1.5;
+      max-width: 180px;
+    }
+
+    .cards-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .mcard {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 0.5px solid #e8e6df;
+      background: #f8f7f3;
+      transition: transform .3s ease, box-shadow .3s ease;
+      aspect-ratio: 3/4;
+    }
+
+    .mcard:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .1);
+      z-index: 5;
+    }
+
+    .mcard img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .fcard {
+      aspect-ratio: 3/4;
+      perspective: 1200px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .fcard-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform .75s cubic-bezier(.34, 1.2, .64, 1);
+      transform-style: preserve-3d;
+      border-radius: 18px;
+    }
+
+    .fcard:hover .fcard-inner {
+      transform: rotateY(180deg);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .1);
+    }
+
+    .fcard-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: 0.5px solid #e8e6df;
+      background: #f8f7f3;
+    }
+
+    .fcard-face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .fcard-back {
+      transform: rotateY(180deg);
+    }
+
+    .fcard-hint {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26, 26, 24, .7);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .7);
+      letter-spacing: .04em;
+      white-space: nowrap;
+      z-index: 3;
+      transition: opacity .2s;
+      pointer-events: none;
+    }
+
+    .fcard:hover .fcard-hint {
+      opacity: 0;
+    }
+
+    /* ══════════════════════════════════
+       PROJECTS (Fluz-style alternating)
+    ══════════════════════════════════ */
+    .projects-section {
+      padding: 80px 0;
+      border-top: 0.5px solid #e8e6df;
+    }
+
+    .proj-block {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .proj-block:last-of-type {
+      padding-bottom: 0;
+    }
+
+    .proj-block.flipped .proj-text {
+      order: 2;
+    }
+
+    .proj-block.flipped .proj-visual {
+      order: 1;
+    }
+
+    .proj-text .ptag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #639922;
+      background: #f0fde8;
+      border: 1px solid #d4f0b0;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    .proj-text h3 {
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #1a1a18;
+      margin-bottom: 14px;
+    }
+
+    .proj-text p {
+      font-size: 15px;
+      color: #888780;
+      line-height: 1.7;
+      margin-bottom: 22px;
+      max-width: 360px;
+    }
+
+    .proj-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .pchip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: #f5f4f0;
+      color: #5f5e5a;
+      border: 0.5px solid #e8e6df;
+    }
+
+    .proj-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a1a18;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .proj-cta:hover {
+      background: #639922;
+    }
+
+    .cta-arr {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    /* Browser mockup */
+    .browser-mock {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 0.5px solid #e8e6df;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .09), 0 4px 12px rgba(0, 0, 0, .04);
+    }
+
+    .bchr {
+      background: #f5f4f0;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 0.5px solid #e8e6df;
+    }
+
+    .bdots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .bd {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .bdr {
+      background: #ff5f57;
+    }
+
+    .bdy {
+      background: #ffbd2e;
+    }
+
+    .bdg {
+      background: #27c93f;
+    }
+
+    .burl {
+      flex: 1;
+      background: #fff;
+      border: 0.5px solid #dddbd5;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 10px;
+      color: #b4b2a9;
+      font-family: monospace;
+    }
+
+    .bbody {
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bbody img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Coded fallbacks for when images don't exist */
+    .fallback-tam {
+      display: none;
+      /* shown via onerror */
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #0a120a 0%, #0f200f 60%, #111c11 100%);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .fallback-tam svg {
+      opacity: .9;
+    }
+
+    .fallback-tam-lbl {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .3);
+      font-weight: 500;
+    }
+
+    .fallback-tone {
+      display: none;
+      width: 100%;
+      height: 100%;
+      /* background: #fafaf8; */
+      flex-direction: column;
+      padding: 20px;
+      gap: 10px;
+    }
+
+    .tone-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .tone-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: #f0fde8;
+      color: #639922;
+      border: 1px solid #d4f0b0;
+    }
+
+    .tone-lbl {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a18;
+    }
+
+    .tone-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tone-input {
+      flex: 1;
+      border: 0.5px solid #e8e6df;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #888780;
+      background: #fff;
+    }
+
+    .tone-btn {
+      background: #1a1a18;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tone-card {
+      background: #fff;
+      border: 0.5px solid #e8e6df;
+      border-radius: 10px;
+      padding: 12px 14px;
+      flex: 1;
+    }
+
+    .tone-langs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tone-lang {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .tone-lang.en {
+      background: #f0fde8;
+      color: #639922;
+    }
+
+    .tone-lang.ar {
+      background: #fffbea;
+      color: #7a5a00;
+    }
+
+    .tone-en {
+      font-size: 12px;
+      color: #5f5e5a;
+      line-height: 1.6;
+    }
+
+    .tone-ar {
+      font-size: 13px;
+      color: #5f5e5a;
+      text-align: right;
+      direction: rtl;
+      line-height: 1.7;
+      margin-top: 6px;
+    }
+
+    /* Feature strip between projects */
+    .feature-strip {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      border-top: 0.5px solid #e8e6df;
+      border-bottom: 0.5px solid #e8e6df;
+      margin-bottom: 80px;
+    }
+
+    .fi-ico {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .fi-h {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a18;
+      margin-bottom: 6px;
+    }
+
+    .fi-p {
+      font-size: 13px;
+      color: #888780;
+      line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════
+       KPI SECTION
+    ══════════════════════════════════ */
+    .kpi-section {
+      padding: 80px 0;
+      /* background: #fafaf8; */
+      border-top: 0.5px solid #e8e6df;
+    }
+
+    .kpi-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .kpi-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .kpi-head-note {
+      font-size: 12px;
+      color: #c4c2b9;
+      text-align: right;
+      max-width: 180px;
+      line-height: 1.5;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: #fff;
+      border: 0.5px solid #e8e6df;
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .kpi-card:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .07);
+      transform: translateY(-3px);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: var(--accent, #639922);
+      opacity: .18;
+    }
+
+    .kc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .kc-em {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .kc-wt {
+      font-size: 10px;
+      font-weight: 700;
+      color: #888780;
+      background: #f1efe8;
+      padding: 3px 8px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .kc-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1a1a18;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .kc-score {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      color: var(--accent, #639922);
+      margin-top: 4px;
+    }
+
+    .kc-score sub {
+      font-size: 18px;
+      font-weight: 500;
+      color: #d3d1c7;
+      letter-spacing: 0;
+      vertical-align: baseline;
+    }
+
+    .kc-bar {
+      height: 3px;
+      background: #f1efe8;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .kc-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--accent, #639922);
+    }
+
+    .kc-note {
+      font-size: 11px;
+      color: #b4b2a9;
+      line-height: 1.55;
+      margin-top: 2px;
+    }
+
+    /* ══════════════════════════════════
+       SCORE CARD
+    ══════════════════════════════════ */
+    .score-section {
+      padding: 60px 40px 80px;
+      background: #fff;
+    }
+
+    .score-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .score-card {
+      background: #1a1a18;
+      border-radius: 24px;
+      padding: 52px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .sc-eyebrow {
+      font-size: 11px;
+      color: #5f5e5a;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+
+    .sc-num {
+      font-size: clamp(60px, 8vw, 100px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -4px;
+    }
+
+    .sc-num span {
+      font-size: .35em;
+      font-weight: 400;
+      color: #4a4a48;
+      letter-spacing: 0;
+    }
+
+    .sc-verd {
+      font-size: 13px;
+      color: #5f5e5a;
+      margin-top: 10px;
+    }
+
+    .sc-grade {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #639922;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer {
+      border-top: 0.5px solid #e8e6df;
+      padding: 32px 40px;
+      text-align: center;
+      font-size: 11px;
+      color: #c4c2b9;
+      line-height: 1.8;
+    }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 960px) {
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .proj-block {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .proj-block.flipped .proj-text {
+        order: 0;
+      }
+
+      .proj-block.flipped .proj-visual {
+        order: 0;
+      }
+
+      .feature-strip {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .score-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .stats-strip {
+        padding: 40px 20px;
+      }
+
+      .stats-inner {
+        gap: 20px;
+      }
+
+      .cards-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cards-note {
+        text-align: left;
+        max-width: none;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px 40px;
+      }
+
+      .wrap,
+      .proj-block,
+      .kpi-inner,
+      .score-section,
+      .score-wrap {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .feature-strip {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .kpi-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .kpi-head-note {
+        text-align: left;
+        max-width: none;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .score-card {
+        padding: 36px 28px;
+      }
+
+      footer {
+        padding: 28px 20px;
+      }
+
+      .cards-head {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px 40px;
+      }
+    }
+
+    /* Orbit hero mobile */
+    @media (max-width: 560px) {
+      .center-title {
+        font-size: 38px;
+        letter-spacing: -2px;
+      }
+
+      .r3 {
+        width: 360px;
+        height: 360px;
+      }
+
+      .r4 {
+        width: 500px;
+        height: 500px;
+      }
+
+      .ficon {
+        display: none;
+      }
+
+      .chip-box {
+        width: 54px;
+        height: 54px;
+        padding: 6px;
+      }
+
+      .chip-label {
+        font-size: 9px;
+      }
+
+      .chip[data-tx="10"][data-ty="-215"] {
+        transform: translate(-27px, -160px) !important;
+      }
+
+      .chip[data-tx="310"][data-ty="80"] {
+        transform: translate(155px, -27px) !important;
+      }
+
+      .chip[data-tx="-230"][data-ty="230"] {
+        transform: translate(-27px, 160px) !important;
+      }
+
+      .chip[data-tx="-320"][data-ty="-10"] {
+        transform: translate(-155px, -27px) !important;
+      }
+
+      .chip[data-tx="230"][data-ty="-220"] {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ ORBIT HERO ══ -->
+  <section class="orbit-section" id="hero">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="ring r4"></div>
+
+    <div class="center-text">
+      <div class="center-label">Kuwait Finance House · H1 2026</div>
+      <div class="center-title">DJ<br><span class="g">Performance</span></div>
+      <div class="center-sub">UX/Product Designer · Mid-Year Review</div>
+      <a class="center-badge" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">View review
+        ↓</a>
+    </div>
+
+    <!-- AURORA -->
+    <div class="chip" style="--tx:-320px;--ty:-10px;transform:translate(-320px,-10px);" data-tx="-320" data-ty="-10">
+      <div class="chip-box">
+        <img src="../images/Aurora - Logo Colored.svg" alt="Aurora">
+      </div>
+      <span class="chip-label">Aurora</span>
+    </div>
+
+    <!-- TAM -->
+    <div class="chip" style="--tx:230px;--ty:-220px;transform:translate(230px,-220px);" data-tx="230" data-ty="-220">
+      <div class="chip-box">
+        <img src="../images/tam-logo.svg" alt="TAM">
+      </div>
+      <span class="chip-label">TAM</span>
+    </div>
+
+    <!-- KFH -->
+    <div class="chip" style="--tx:10px;--ty:-215px;transform:translate(10px,-215px);" data-tx="10" data-ty="-215">
+      <div class="chip-box">
+        <img src="../images/kfh-logo.svg" alt="KFH">
+      </div>
+      <span class="chip-label">KFH</span>
+    </div>
+
+    <!-- HORIZON (styled) -->
+    <div class="chip" style="--tx:-230px;--ty:230px;transform:translate(-230px,230px);" data-tx="-230" data-ty="230">
+      <div class="chip-box">
+        <img src="../images/horizon.png" alt="Horizon">
+      </div>
+      <span class="chip-label">Horizon</span>
+    </div>
+
+    <!-- TELERIK (styled) -->
+    <div class="chip" style="--tx:310px;--ty:80px;transform:translate(310px,80px);" data-tx="310" data-ty="80">
+      <div class="chip-box">
+        <img src="../images/telerik.png" alt="Telerik">
+      </div>
+      <span class="chip-label">Telerik</span>
+    </div>
+
+    <!-- Floating icons -->
+    <div class="ficon" style="--tx:-340px;--ty:10px;--d:3.2s;transform:translate(-340px,10px)">🎨</div>
+    <div class="ficon" style="--tx:310px;--ty:-180px;--d:2.8s;transform:translate(310px,-180px)">📐</div>
+    <div class="ficon" style="--tx:170px;--ty:220px;--d:3.5s;transform:translate(170px,220px)">⚡</div>
+    <div class="ficon" style="--tx:-200px;--ty:210px;--d:3.0s;transform:translate(-200px,210px)">🔲</div>
+    <div class="ficon" style="--tx:-280px;--ty:-200px;--d:3.8s;transform:translate(-280px,-200px)">🖱️</div>
+    <div class="ficon" style="--tx:100px;--ty:-320px;--d:2.6s;transform:translate(100px,-320px)">💡</div>
+    <div class="ficon" style="--tx:-110px;--ty:-330px;--d:3.4s;transform:translate(-110px,-330px)">🧩</div>
+    <div class="ficon" style="--tx:360px;--ty:60px;--d:2.9s;transform:translate(360px,60px)">📱</div>
+    <div class="ficon" style="--tx:-360px;--ty:-90px;--d:3.6s;transform:translate(-360px,-90px)">📊</div>
+    <div class="ficon" style="--tx:250px;--ty:-270px;--d:3.1s;transform:translate(250px,-270px)">🔬</div>
+    <div class="ficon" style="--tx:-150px;--ty:310px;--d:3.3s;transform:translate(-150px,310px)">✦</div>
+    <div class="ficon" style="--tx:180px;--ty:-140px;--d:4.0s;transform:translate(180px,-140px)">🎯</div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <svg width="16" height="16" fill="none" stroke="#b4b2a9" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══ MAIN ══ -->
+  <div id="main">
+
+    <!-- CARDS MARQUEE -->
+    <section class="cards-section">
+      <div class="cards-head">
+        <div>
+          <span class="s-tag">Impact Cards</span>
+          <h2 class="s-h2">Nine areas.<br>One standard.</h2>
+        </div>
+        <div class="cards-note">Hover the Quality card to see the before &amp; after.</div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="mcard"><img src="Group 26.png" alt="Design Implementation Accuracy"></div>
+        <div class="mcard"><img src="Group 5914.png" alt="Bug Rates in UI Components"></div>
+        <div class="mcard"><img src="Group 5916.png" alt="Reusable UI Component Development"></div>
+        <div class="mcard"><img src="Group 5917.png" alt="Cross Team Collaboration"></div>
+        <div class="mcard"><img src="Group 5918.png" alt="Sprint Participation"></div>
+        <div class="mcard"><img src="Group 5919.png" alt="Documentation Quality"></div>
+        <div class="mcard"><img src="Group 5920.png" alt="UX Research Contributions"></div>
+        <div class="mcard"><img src="Group 5921.png" alt="Continuous Improvements"></div>
+        <div class="fcard">
+          <div class="fcard-inner">
+            <div class="fcard-face"><img src="Group 27.png" alt="UI Code Quality – Before"></div>
+            <div class="fcard-face fcard-back"><img src="DJ.png" alt="UI Code Quality – After"></div>
+          </div>
+          <div class="fcard-hint">hover to flip ↩</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects-section">
+      <div class="wrap" style="padding-top:0; margin-bottom:60px;">
+        <span class="s-tag">Cross-team projects</span>
+        <h2 class="s-h2">Built outside the sprint.</h2>
+        <p class="s-p">Two live products designed and shipped across teams , neither was in the original scope.</p>
+      </div>
+
+      <!-- TAM -->
+      <div class="proj-block">
+        <div class="proj-text">
+          <span class="ptag">Tam Website</span>
+          <h3>TAM Banking<br>Landing Page</h3>
+          <p>A scroll-driven, animated marketing page for TAM.</p>
+          <div class="proj-chips">
+            <span class="pchip">GSAP</span>
+            <span class="pchip">Scroll Animations</span>
+          </div>
+          <a class="proj-cta" href="https://tam-website-six.vercel.app/" target="_blank" rel="noopener">
+            View live <div class="cta-arr">↗</div>
+          </a>
+        </div>
+        <div class="proj-visual">
+          <div class="browser-mock">
+            <div class="bchr">
+              <div class="bdots">
+                <div class="bd bdr"></div>
+                <div class="bd bdy"></div>
+                <div class="bd bdg"></div>
+              </div>
+              <div class="burl">tam-website-six.vercel.app</div>
+            </div>
+            <div class="bbody">
+              <img src="../images/tam.png" alt="TAM Website"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="fallback-tam" style="display:none">
+                <img src="../images/tam-logo.svg" alt="TAM" style="width:130px;height:auto;opacity:.5">
+                <span class="fallback-tam-lbl">Youth Banking · Kuwait Finance House</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- WRITING ENGINE -->
+      <div class="proj-block flipped">
+        <div class="proj-text">
+          <span class="ptag">Internal Tool · Bilingual · KFH</span>
+          <h3>KFH UX<br>Writing Engine</h3>
+          <p>A bilingual AR/EN writing assistant built with FastAPI. Standardising KFH's UX copy with a live glossary,
+            tone guidelines, and instant bilingual output.</p>
+          <div class="proj-chips">
+            <span class="pchip">FastAPI</span>
+            <span class="pchip">Bilingual AR/EN</span>
+            <span class="pchip">Glossary</span>
+          </div>
+          <a class="proj-cta" href="https://kfh-tone.vercel.app/" target="_blank" rel="noopener">
+            View live <div class="cta-arr">↗</div>
+          </a>
+        </div>
+        <div class="proj-visual">
+          <div class="browser-mock">
+            <div class="bchr">
+              <div class="bdots">
+                <div class="bd bdr"></div>
+                <div class="bd bdy"></div>
+                <div class="bd bdg"></div>
+              </div>
+              <div class="burl">kfh-tone.vercel.app</div>
+            </div>
+            <div class="bbody">
+              <img src="../images/tone.png" alt="KFH Tone"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="fallback-tone" style="display:none">
+                <div class="tone-bar">
+                  <span class="tone-badge">KFH Tone</span>
+                  <span class="tone-lbl">UX Writing Engine</span>
+                </div>
+                <div class="tone-row">
+                  <div class="tone-input">Enter text to rewrite in KFH tone…</div>
+                  <button class="tone-btn">Generate</button>
+                </div>
+                <div class="tone-card">
+                  <div class="tone-langs">
+                    <span class="tone-lang en">EN</span>
+                    <span class="tone-lang ar">AR</span>
+                  </div>
+                  <div class="tone-en">Confirm your payment using Touch ID or Face ID.</div>
+                  <div class="tone-ar">أكد دفعتك باستخدام بصمة الإصبع أو Face ID.</div>
+                </div>
+                <div class="tone-card" style="flex:1">
+                  <div class="tone-langs"><span class="tone-lang en">Glossary</span></div>
+                  <div class="tone-en">biometric → Touch ID / Face ID<br>transfer → send money<br>confirm → proceed
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPIs -->
+    <section class="kpi-section">
+      <div class="kpi-inner">
+        <div class="kpi-head">
+          <div>
+            <span class="s-tag">Official KPIs · self-assessed · totally objective</span>
+            <h2 class="s-h2" style="margin-bottom:0">10 metrics</h2>
+          </div>
+          <div class="kpi-head-note">Weighted to match KFH's official review criteria</div>
+        </div>
+
+        <div class="kpi-grid">
+
+          <div class="kpi-card" style="--accent:#639922;">
+            <div class="kc-top">
+              <div class="kc-em">🎯</div>
+              <div class="kc-wt">15%</div>
+            </div>
+            <div class="kc-name">Design Implementation Accuracy</div>
+            <div class="kc-score">4<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:100%"></div>
+            </div>
+            <div class="kc-note">No DesignSample in Jira is attached without revision from the PO or business to move in
+              the cycle.</div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#1D9E75;">
+            <div class="kc-top">
+              <div class="kc-em">🧹</div>
+              <div class="kc-wt">15%</div>
+            </div>
+            <div class="kc-name">UI Code Quality</div>
+            <div class="kc-score">3<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:75%"></div>
+            </div>
+            <div class="kc-note">PR requests are approved without conflict — proof that it is good.</div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#639922;">
+            <div class="kc-top">
+              <div class="kc-em">🐛</div>
+              <div class="kc-wt">10%</div>
+            </div>
+            <div class="kc-name">Bug Rate in UI Components</div>
+            <div class="kc-score">4<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:100%"></div>
+            </div>
+            <div class="kc-note">I find the bugs before the bugs find the users. This is the way.</div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#1D9E75;">
+            <div class="kc-top">
+              <div class="kc-em">♻️</div>
+              <div class="kc-wt">5%</div>
+            </div>
+            <div class="kc-name">Reusable UI Component Development</div>
+            <div class="kc-score">3<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:75%"></div>
+            </div>
+            <div class="kc-note">AvatarStack, ActionsMenu, offcanvas drawer ; dynamic and configurable via params.
+            </div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#639922;">
+            <div class="kc-top">
+              <div class="kc-em">🤝</div>
+              <div class="kc-wt">10%</div>
+            </div>
+            <div class="kc-name">Cross-Team Collaboration</div>
+            <div class="kc-score">4<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:100%"></div>
+            </div>
+            <div class="kc-note">Horizon. TAM Website. PowerBI. ServiceHub.</div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#639922;">
+            <div class="kc-top">
+              <div class="kc-em">🏃</div>
+              <div class="kc-wt">15%</div>
+            </div>
+            <div class="kc-name">Sprint Participation</div>
+            <div class="kc-score">4<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:100%"></div>
+            </div>
+            <div class="kc-note">My Designs are ready pre sprint always and all tickets delivered before sprint starts.
+            </div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#1D9E75;">
+            <div class="kc-top">
+              <div class="kc-em">📄</div>
+              <div class="kc-wt">10%</div>
+            </div>
+            <div class="kc-name">Documentation Quality</div>
+            <div class="kc-score">3<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:75%"></div>
+            </div>
+            <div class="kc-note">All developers can read and use our components easily now.</div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#1D9E75;">
+            <div class="kc-top">
+              <div class="kc-em">🔬</div>
+              <div class="kc-wt">10%</div>
+            </div>
+            <div class="kc-name">UX Research Contribution</div>
+            <div class="kc-score">3<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:75%"></div>
+            </div>
+            <div class="kc-note">Mobbin, Dribbble, and Codepen are my best friends.</div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#639922;">
+            <div class="kc-top">
+              <div class="kc-em">📈</div>
+              <div class="kc-wt">10%</div>
+            </div>
+            <div class="kc-name">Continuous Improvement</div>
+            <div class="kc-score">4<sub>/4</sub></div>
+            <div class="kc-bar">
+              <div class="kc-fill" style="width:100%"></div>
+            </div>
+            <div class="kc-note">Explored Mobile Design, Zeplin, and Figma.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <footer>
+      Scores peer-reviewed by DJ · Approved by DJ · Independently verified by DJ<br>
+      No scope was harmed in the making of this review
+    </footer>
+
+  </div><!-- /main -->
+
+  <script>
+    // Orbit parallax
+    const hero = document.getElementById('hero');
+    const chips = document.querySelectorAll('.chip');
+    const ficons = document.querySelectorAll('.ficon');
+
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      chips.forEach(c => {
+        const tx = parseFloat(c.dataset.tx);
+        const ty = parseFloat(c.dataset.ty);
+        c.style.transform = `translate(${tx + dx * 22}px, ${ty + dy * 22}px)`;
+      });
+      ficons.forEach(ic => {
+        const s = getComputedStyle(ic);
+        const tx = parseFloat(s.getPropertyValue('--tx'));
+        const ty = parseFloat(s.getPropertyValue('--ty'));
+        ic.style.transform = `translate(${tx + dx * 36}px, ${ty + dy * 36}px)`;
+      });
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      chips.forEach(c => {
+        c.style.transform = `translate(${c.dataset.tx}px,${c.dataset.ty}px)`;
+      });
+      ficons.forEach(ic => {
+        const s = getComputedStyle(ic);
+        ic.style.transform = `translate(${parseFloat(s.getPropertyValue('--tx'))}px,${parseFloat(s.getPropertyValue('--ty'))}px)`;
+      });
+    });
+  </script>
+</body>
+
+</html>
