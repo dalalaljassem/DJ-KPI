@@ -3277,6 +3277,63 @@
       padding-top: 0;
       padding-bottom: 40px;
     }
+
+    /* shelf: reliable touch scrolling + arrows */
+    .shelf {
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x pan-y;
+      overscroll-behavior-x: contain;
+      cursor: grab;
+    }
+
+    .shelf.dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+    }
+
+    .shelf.dragging .pj {
+      pointer-events: none;
+    }
+
+    .shelf-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .shelf-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #e8e6df;
+      background: #fff;
+      color: #1a1a18;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s, opacity .2s;
+    }
+
+    .shelf-btn:hover {
+      background: #2196f3;
+      border-color: #2196f3;
+      color: #fff;
+    }
+
+    .shelf-btn:disabled {
+      opacity: .35;
+      cursor: default;
+      background: #fff;
+      color: #1a1a18;
+      border-color: #e8e6df;
+    }
+
+    .shelf-hint {
+      margin-left: 6px;
+      font-size: 13px;
+      color: #888780;
+    }
   </style>
 </head>
 
@@ -3370,6 +3427,11 @@
         <span class="s-tag">Cross-team projects</span>
         <h2 class="s-h2">DJ said yes to other teams.</h2>
         <p class="s-p">None of these were in her squad's scope. Select one to open the live site.</p>
+        <div class="shelf-nav">
+          <button class="shelf-btn" id="shelfPrev" type="button" aria-label="Previous projects">←</button>
+          <button class="shelf-btn" id="shelfNext" type="button" aria-label="More projects">→</button>
+          <span class="shelf-hint">Swipe or use the arrows</span>
+        </div>
       </div>
 
       <div class="wrap">
@@ -3788,6 +3850,37 @@
           ], { duration: 1500 + Math.random() * 900, easing: 'cubic-bezier(.15,.6,.4,1)' }).onfinish = () => c.remove();
         }
       }
+    })();
+  </script>
+  <script>
+    // shelf: arrow buttons + mouse drag (touch swipe is native)
+    (function () {
+      const shelf = document.getElementById('shelf');
+      const prev = document.getElementById('shelfPrev'), next = document.getElementById('shelfNext');
+      if (!shelf || !prev) return;
+      const step = () => { const c = shelf.querySelector('.pj'); return c ? c.getBoundingClientRect().width + 18 : 300; };
+      prev.addEventListener('click', () => shelf.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => shelf.scrollBy({ left: step(), behavior: 'smooth' }));
+      function edges() {
+        prev.disabled = shelf.scrollLeft <= 4;
+        next.disabled = shelf.scrollLeft + shelf.clientWidth >= shelf.scrollWidth - 4;
+      }
+      shelf.addEventListener('scroll', edges, { passive: true });
+      addEventListener('resize', edges);
+      setTimeout(edges, 300);
+
+      // click-and-drag with a mouse
+      let down = false, x0 = 0, s0 = 0, moved = 0;
+      shelf.addEventListener('mousedown', e => { down = true; moved = 0; x0 = e.clientX; s0 = shelf.scrollLeft; });
+      addEventListener('mousemove', e => {
+        if (!down) return;
+        const dx = e.clientX - x0;
+        if (Math.abs(dx) > 5) shelf.classList.add('dragging');
+        moved = Math.max(moved, Math.abs(dx));
+        shelf.scrollLeft = s0 - dx;
+      });
+      addEventListener('mouseup', () => { down = false; setTimeout(() => shelf.classList.remove('dragging'), 0); });
+      shelf.addEventListener('click', e => { if (moved > 5) { e.stopPropagation(); e.preventDefault(); moved = 0; } }, true);
     })();
   </script>
 </body>
